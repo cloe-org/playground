@@ -4,6 +4,8 @@ Welcome to the **Playground** repository of the [CLOE organization](https://gith
 
 This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the CLOE ecosystem.
 
+To be able to play with the content of this repository, the user may need to download synthetic example data stored at https://zenodo.org/communities/cloe-org/records
+
 ## 🔧 Features
 - Tutorials on how to run `cloelib`
 
