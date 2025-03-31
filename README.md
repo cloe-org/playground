@@ -37,6 +37,6 @@ jupyter notebook tutorials/observables/photo.ipynb
 Contributions are welcome! If you want to propose an experiment or new feature, feel free to open an issue or submit a pull request. Follow the general contribution guidelines of the organisation.
 
 ## 📬 Contact
-For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](@cloe-org/cloe-mantainers).
+For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).
 
 Happy learning! 🎉
