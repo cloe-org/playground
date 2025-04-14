@@ -1,8 +1,8 @@
 # Playground Repository
 
-Welcome to the **Playground** repository of the [`cloe-org` organization](https://github.com/cloe-org)! 🚀
+Welcome to the **Playground** repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀
 
-This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the `cloe-org` ecosystem.
+This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the `cloe` organisation.
 
 To explore the contents of this repository, you may need to download synthetic example data available at [Zenodo – cloe-org Community](https://zenodo.org/communities/cloe-org/records).
 
