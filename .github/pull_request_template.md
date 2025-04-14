@@ -20,6 +20,7 @@ Closes #
 
 ## 🔍 Checklist
 <!-- Check off what you've done before submitting the PR -->
+- [ ] I've named the title of this pull request starting by 'gh-#: TITLE'
 - [ ] I’ve linked the related issue  
 - [ ] I’ve tested the code or feature manually  
 - [ ] I’ve added comments/docstrings where needed  
