@@ -1,10 +1,12 @@
 # Playground Repository
 
-Welcome to the **Playground** repository of the [CLOE organization](https://github.com/cloe-org)! 🚀
+Welcome to the **Playground** repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀
 
-This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the CLOE ecosystem.
+This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the `cloe` organisation.
 
-To be able to play with the content of this repository, the user may need to download synthetic example data stored at https://zenodo.org/communities/cloe-org/records
+To explore the contents of this repository, you may need to download synthetic example data available at [Zenodo – cloe-org Community](https://zenodo.org/communities/cloe-org/records).
+
+The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest/intro.html) library.
 
 ## 🔧 Features
 - Tutorials on how to run `cloelib`
@@ -14,17 +16,21 @@ The repository is organized as follows:
 
 ```
 playground/
-│── tutorials/       # Jupyter notebooks for cosmological codes and computing observables
+│── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood
+│── validation/      # Jupyter notebooks for comparison of cosmological observables against `cloelib`
+│── protocols_test/  # Script for validating a new protocol interface
 │── README.md        # This file
 ```
 
 ## 📦 Installation
-To use this repository, clone it and set up the necessary dependencies:
+To use this repository, clone it:
 
 ```bash
 git clone https://github.com/cloe-org/playground.git
 cd playground
 ```
+
+It might require as dependencies `cloelib`, `cloelike`, `euclidlib` and others.
 
 ## 🚀 Usage
 You can run the provided notebooks for experimentation!
