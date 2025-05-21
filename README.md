@@ -19,7 +19,6 @@ playground/
 │── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood
 │── validation/      # Jupyter notebooks for comparison of cosmological observables against `cloelib`
 │── exercises/       # Jupyter notebooks with exercises that use `cloelib` for teaching purposes
-│── protocols_test/  # Script for validating a new protocol interface
 │── README.md        # This file
 ```
 
