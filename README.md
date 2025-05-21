@@ -39,6 +39,7 @@ You can run the provided notebooks for experimentation!
 ```bash
 jupyter notebook tutorials/observables/photo.ipynb
 jupyter notebook tutorials/observables/spectro.ipynb
+jupyter notebook tutorials/observables/bao.ipynb
 ```
 
 ## 🤝 Contributing
