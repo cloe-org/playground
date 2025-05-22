@@ -19,7 +19,6 @@ playground/
 │── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood
 │── validation/      # Jupyter notebooks for comparison of cosmological observables against `cloelib`
 │── exercises/       # Jupyter notebooks with exercises that use `cloelib` for teaching purposes
-│── protocols_test/  # Script for validating a new protocol interface
 │── README.md        # This file
 ```
 
@@ -39,10 +38,13 @@ You can run the provided notebooks for experimentation!
 ```bash
 jupyter notebook tutorials/observables/photo.ipynb
 jupyter notebook tutorials/observables/spectro.ipynb
+jupyter notebook tutorials/observables/bao.ipynb
 ```
 
 ## 🤝 Contributing
 Contributions are welcome! If you want to propose an experiment or new feature, feel free to open an issue or submit a pull request. Follow the general contribution guidelines of the organisation.
+
+Current list of contributors include  M. Bonici, G. Cañas-Herrera, P. Carrilho, S. Casas, C. Moretti, and A. Pezzotta as cloe-maintainers (listed in alphabetical order), L. Linke and Jose Coloma Nadal.
 
 ## 📬 Contact
 For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).
