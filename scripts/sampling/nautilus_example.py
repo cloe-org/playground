@@ -184,9 +184,9 @@ def like_Naut_test(param_dict):
     
     return like
 
-sampler = Sampler(prior, like_Naut_test, n_live=100, filepath='checkpoint_3x2pt.hdf5')
+sampler = Sampler(prior, like_Naut_test, n_live=4000, filepath='checkpoint_3x2pt.hdf5')
 t_start = time.time()
-sampler.run(verbose=True,n_eff=2000)
+sampler.run(verbose=True)
 t_end = time.time()
 print('Total time: {:.1f}s'.format(t_end - t_start))
 
