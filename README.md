@@ -16,9 +16,10 @@ The repository is organized as follows:
 
 ```
 playground/
-│── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood
+│── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood with cloelib and cloelike
 │── validation/      # Jupyter notebooks for comparison of cosmological observables against `cloelib`
 │── exercises/       # Jupyter notebooks with exercises that use `cloelib` for teaching purposes
+│── scripts/         # Python scripts with sampling examples
 │── README.md        # This file
 ```
 
