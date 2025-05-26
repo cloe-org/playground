@@ -138,44 +138,10 @@ def like_Naut_test(param_dict):
     pars_in = default_pars.copy()
 
     pars_in.update(param_dict)
-
+    # change to the cloelib base parameters
     pars_in['Omega_cdm0'] = param_dict['omch2'] / (pars_in['H0']/100)**2
     pars_in['Omega_b0'] = param_dict['ombh2'] / (pars_in['H0']/100)**2
     pars_in['As'] = np.exp(param_dict['logAs'])*1e-10
-    pars_in['ns'] = param_dict['ns']
-    pars_in['H0'] = param_dict['H0']
-    pars_in['AIA'] = param_dict['AIA']
-    pars_in['EtaIA'] = param_dict['EtaIA']
-    #pars_in['w0'] = param_dict['w0']
-    #pars_in['wa'] = param_dict['wa']
-    pars_in['b1_photo_poly0'] = param_dict['b1_photo_poly0']
-    pars_in['b1_photo_poly1'] = param_dict['b1_photo_poly1']    
-    pars_in['b1_photo_poly2'] = param_dict['b1_photo_poly2']
-    pars_in['b1_photo_poly3'] = param_dict['b1_photo_poly3']
-    pars_in['magnification_bias_1'] = param_dict['magnification_bias_1']
-    pars_in['magnification_bias_2'] = param_dict['magnification_bias_2']
-    pars_in['magnification_bias_3'] = param_dict['magnification_bias_3']
-    pars_in['magnification_bias_4'] = param_dict['magnification_bias_4']
-    pars_in['magnification_bias_5'] = param_dict['magnification_bias_5']
-    pars_in['magnification_bias_6'] = param_dict['magnification_bias_6']
-    pars_in['dz_pos_1'] = param_dict['dz_pos_1']
-    pars_in['dz_pos_2'] = param_dict['dz_pos_2']
-    pars_in['dz_pos_3'] = param_dict['dz_pos_3']
-    pars_in['dz_pos_4'] = param_dict['dz_pos_4']
-    pars_in['dz_pos_5'] = param_dict['dz_pos_5']
-    pars_in['dz_pos_6'] = param_dict['dz_pos_6']
-    pars_in['multiplicative_bias_1'] = param_dict['multiplicative_bias_1']
-    pars_in['multiplicative_bias_2'] = param_dict['multiplicative_bias_2']
-    pars_in['multiplicative_bias_3'] = param_dict['multiplicative_bias_3']
-    pars_in['multiplicative_bias_4'] = param_dict['multiplicative_bias_4']
-    pars_in['multiplicative_bias_5'] = param_dict['multiplicative_bias_5']
-    pars_in['multiplicative_bias_6'] = param_dict['multiplicative_bias_6']
-    pars_in['dz_shear_1'] = param_dict['dz_shear_1']
-    pars_in['dz_shear_2'] = param_dict['dz_shear_2']
-    pars_in['dz_shear_3'] = param_dict['dz_shear_3']
-    pars_in['dz_shear_4'] = param_dict['dz_shear_4']
-    pars_in['dz_shear_5'] = param_dict['dz_shear_5']
-    pars_in['dz_shear_6'] = param_dict['dz_shear_6']
     
     try:
         like = like_instance.loglike(pars_in)
