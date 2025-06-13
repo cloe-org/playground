@@ -18,6 +18,18 @@
         "projectManagement",
         "tutorial"
       ]
+    },
+    {
+      "login": "chiaramoretti",
+      "name": "Chiara Moretti",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12472732?v=4",
+      "profile": "https://github.com/chiaramoretti",
+      "contributions": [
+        "code",
+        "review",
+        "maintenance",
+        "tutorial"
+      ]
     }
   ],
   "files": [
