@@ -1,4 +1,4 @@
-# Playground Repository
+# 🛝 Playground Repository
 
 Welcome to the **Playground** repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀
 
@@ -8,8 +8,10 @@ To explore the contents of this repository, you may need to download synthetic e
 
 The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest/intro.html) library.
 
+Happy learning! 🎉
+
 ## 🔧 Features
-- Tutorials on how to run `cloelib`
+- Tutorials on how to run `cloelib`, `cloelike` and get around the cloe-org ecosystem
 
 ## 📂 Structure
 The repository is organized as follows:
@@ -24,7 +26,7 @@ playground/
 ```
 
 ## 📦 Installation
-To use this repository, clone it:
+To use this repository, clone it, no installation needed!
 
 ```bash
 git clone https://github.com/cloe-org/playground.git
@@ -42,12 +44,14 @@ jupyter notebook tutorials/observables/spectro.ipynb
 jupyter notebook tutorials/observables/bao.ipynb
 ```
 
-## 🤝 Contributing
-Contributions are welcome! If you want to propose an experiment or new feature, feel free to open an issue or submit a pull request. Follow the general contribution guidelines of the organisation.
-
-Current list of contributors include  M. Bonici, G. Cañas-Herrera, P. Carrilho, S. Casas, C. Moretti, and A. Pezzotta as cloe-maintainers (listed in alphabetical order), L. Linke and Jose Coloma Nadal.
-
 ## 📬 Contact
 For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).
 
-Happy learning! 🎉
+## 🤝 Contributing
+This project follows the [all-contributors](https://allcontributors.org) specification. Contributions of any kind welcome!
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
