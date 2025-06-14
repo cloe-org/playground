@@ -94,6 +94,15 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "jclaramunt",
+      "name": "Juan Claramunt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/32998547?v=4",
+      "profile": "http://jclaramunt.github.io",
+      "contributions": [
+        "ideas"
+      ]
     }
   ],
   "files": [
