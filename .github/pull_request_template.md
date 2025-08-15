@@ -20,6 +20,9 @@ Closes #
 
 ## 🔍 Checklist
 <!-- Check off what you've done before submitting the PR -->
+**You can review this PR in ReviewNB, don't forget to log in with your GitHub username**:  
+👉 https://app.reviewnb.com/cloe-org/playground/pulls/
+
 - [ ] I've named the title of this pull request starting by 'gh-#: TITLE'
 - [ ] I’ve linked the related issue  
 - [ ] I’ve tested the code or notebooks manually  

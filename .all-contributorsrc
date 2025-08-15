@@ -95,6 +95,27 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "ippoppi",
+      "name": "Filippo Oppizzi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50492103?v=4",
+      "profile": "https://github.com/ippoppi",
+      "contributions": [
+        "code",
+        "ideas",
+        "tool"
+      ]
+    },
+    {
+      "login": "marcobonici",
+      "name": "Marco Bonici",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58727599?v=4",
+      "profile": "https://marcobonici.github.io/",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
     }
   ],
   "files": [
