@@ -116,6 +116,29 @@
         "code",
         "ideas"
       ]
+    },
+    {
+      "login": "zahrabaghkhani",
+      "name": "Zahra Baghkhani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47903409?v=4",
+      "profile": "https://github.com/zahrabaghkhani",
+      "contributions": [
+        "code",
+        "doc",
+        "ideas",
+        "bug"
+      ]
+    },
+    {
+      "login": "arthurmloureiro",
+      "name": "Arthur Loureiro",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6471279?v=4",
+      "profile": "http://arthurmloureiro.github.io",
+      "contributions": [
+        "doc",
+        "code",
+        "ideas"
+      ]
     }
   ],
   "files": [
