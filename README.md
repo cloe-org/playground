@@ -44,6 +44,8 @@ jupyter notebook tutorials/observables/spectro.ipynb
 jupyter notebook tutorials/observables/bao.ipynb
 ```
 
+For **Dark Emulator** (3x2pt, GC, GGL fitting), run the notebooks in `tutorials/dark_emulator/`; for production sampling use `python playground/scripts/sampling/darkemu_3x2pt_full_sampling.py` (from the repo root).
+
 ## 📬 Contact
 For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).
 
