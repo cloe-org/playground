@@ -182,11 +182,16 @@ class Cells_calculation:
             plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*(self.cells['POS', 'POS', i+1, i+1][:]-other.cells['POS', 'POS', i+1, i+1][:]) , 
                         label = '$n_{{{}}}$'.format(i+1), linewidth=2, color=sns.color_palette(color_palette, 6)[i])
         ax.set_xlabel(r'$\ell$')
-        ax.set_ylabel(r'$\ell (2\ell +1)C^{\rm gg}(\ell)$');
+        if in_percent:
+            ax.set_ylabel(r'$\Delta C^{\rm gg}(\ell)$'+' in %')
+        else:
+            ax.set_ylabel(r'$\ell (2\ell +1)\Delta C^{\rm gg}(\ell)$')
         ax.set_yscale(yscale)
         ax.legend(fontsize=14)
         ax.grid(True)
 
+
+        
     def plot_cells_GGL(self, ij_list, ax = None, color_palette = 'rocket'):    
         if ax is None:
             ax = plt.gca()
@@ -194,7 +199,7 @@ class Cells_calculation:
         for k in range(len(ij_list)):
             [i,j] = ij_list[k] 
             plt.loglog(self.ells, self.ells*(2*self.ells+1)*self.cells['POS', 'SHE', i, j][0], 
-                       label = '$n_{{{}}}$'.format(i), linewidth=2, color=sns.color_palette(color_palette, len(ij_list))[k])
+                       label = '$n_{{{}}}$'.format(i)+'-$n_{{{}}}$'.format(j), linewidth=2, color=sns.color_palette(color_palette, len(ij_list))[k])
             
         # Labels and legend
         ax.set_xlabel(r'$\ell$')
@@ -215,9 +220,12 @@ class Cells_calculation:
             else:
                 factor = 1
             plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*np.abs(self.cells['POS', 'SHE', i, j][0][:]-other.cells['POS', 'SHE', i, j][0][:]), 
-                       label = '$n_{{{}}}$'.format(i), linewidth=2, linestyle = '--', color=sns.color_palette(color_palette, len(ij_list))[k])
+                       label = '$n_{{{}}}$'.format(i)+'-$n_{{{}}}$'.format(j), linewidth=2, linestyle = '--', color=sns.color_palette(color_palette, len(ij_list))[k])
         ax.set_xlabel(r'$\ell$')
-        ax.set_ylabel(r'$\ell (2\ell +1)C^{\rm gg}(\ell)$');
+        if in_percent:
+            ax.set_ylabel(r'$\Delta C^{\rm gE}(\ell)$'+' in %')
+        else:
+            ax.set_ylabel(r'$\ell (2\ell +1)\Delta C^{\rm gE}(\ell)$')
         ax.set_yscale(yscale)
         ax.legend(fontsize=14)
         ax.grid(True)
