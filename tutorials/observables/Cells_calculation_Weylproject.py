@@ -45,7 +45,7 @@ def Omegam_sigma8_Jhat_vals(z_effs, background, perturbations):
 # i.e. passing different values of bias / magnification bias etc. to the init function
 
 class Cells_calculation:
-    def __init__(self, perturbations, dndz_pos, dndz_she, z):
+    def __init__(self, perturbations, dndz_pos, dndz_she, z, include_rsd = False):
         #self.background = background
         self.perturbations = perturbations
         self.dndz_pos = dndz_pos
@@ -61,20 +61,22 @@ class Cells_calculation:
                                               'magnification_bias_1': 1.0, 'magnification_bias_2': 1.0,
                                               'magnification_bias_3': 1.0, 'magnification_bias_4': 1.0,
                                               'magnification_bias_5': 1.0, 'magnification_bias_6': 1.0,
-                                              'dz_pos_1': 0.0001, 'dz_pos_2': 0.0001,
-                                              'dz_pos_3': 0.0001, 'dz_pos_4': 0.0001,
-                                              'dz_pos_5': 0.0001, 'dz_pos_6': 0.0001})
+                                              'dz_pos_1': 0.000, 'dz_pos_2': 0.000,
+                                              'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
+                                              'dz_pos_5': 0.000, 'dz_pos_6': 0.000},
+                            include_rsd = include_rsd
+                                         )
 
         self.tracer_she = ShearTracer(perturbations = self.perturbations, 
                              dndz = self.dndz_she,
                              z = self.z,
                              nuisance_params={'AIA': 1.72, 'CIA': 0.0134, 'EtaIA':-0.41,
-                                              'multiplicative_bias_1': 0.001, 'multiplicative_bias_2': 0.001,
-                                              'multiplicative_bias_3': 0.001, 'multiplicative_bias_4': 0.001,
-                                              'multiplicative_bias_5': 0.001, 'multiplicative_bias_6': 0.001,
-                                              'dz_shear_1': 0.0001, 'dz_shear_2': 0.0001,
-                                              'dz_shear_3': 0.0001, 'dz_shear_4': 0.0001,
-                                              'dz_shear_5': 0.0001, 'dz_shear_6': 0.0001})
+                                              'multiplicative_bias_1': 0.00, 'multiplicative_bias_2': 0.00,
+                                              'multiplicative_bias_3': 0.00, 'multiplicative_bias_4': 0.00,
+                                              'multiplicative_bias_5': 0.00, 'multiplicative_bias_6': 0.00,
+                                              'dz_shear_1': 0.000, 'dz_shear_2': 0.000,
+                                              'dz_shear_3': 0.000, 'dz_shear_4': 0.000,
+                                              'dz_shear_5': 0.000, 'dz_shear_6': 0.000})
 
     def calculate_Cells(self):
         nl = 100
@@ -85,32 +87,35 @@ class Cells_calculation:
                      **twopoint_posshe.get_Cl(self.ells, 0, self.perturbations.k)}
         
 
-    def plot_windows_she(self, ax=None, color_palette='mako'):
+    def plot_windows_she(self, ax=None, color_palette='mako', plot_tot = True, plot_IA = True, plot_lens = True):
         if ax is None:
             ax = plt.gca()
 
         colors = sns.color_palette(color_palette, 6)
     
         for i in range(0, 6):
-            ax.plot(self.z, 
-                    self.tracer_she.get_window(self.z)[i, :], 
-                    linewidth=2, 
-                    color=colors[i], 
-                    label='Total window' if i == 0 else "")
+            if plot_tot:
+                ax.plot(self.z, 
+                        self.tracer_she.get_window(self.z)[i, :], 
+                        linewidth=2, 
+                        color=colors[i], 
+                        label='Total window' if i == 0 else "")
 
-            ax.plot(self.z, 
-                    self.tracer_she.get_window_IA(self.z)[i, :], 
-                    linewidth=2, 
-                    linestyle='--', 
-                    color=colors[i], 
-                    label='IA' if i == 0 else "")
-
-            ax.plot(self.z, 
-                    self.tracer_she.get_window_lensing(self.z)[i, :], 
-                    linewidth=2, 
-                    linestyle=':', 
-                    color=colors[i], 
-                    label='Lensing' if i == 0 else "")
+            if plot_IA:    
+                ax.plot(self.z, 
+                        self.tracer_she.get_window_IA(self.z)[i, :], 
+                        linewidth=2, 
+                        linestyle='--', 
+                        color=colors[i], 
+                        label='IA' if i == 0 else "")
+                
+            if plot_lens:
+                ax.plot(self.z, 
+                        self.tracer_she.get_window_lensing(self.z)[i, :], 
+                        linewidth=2, 
+                        linestyle=':', 
+                        color=colors[i], 
+                        label='Lensing' if i == 0 else "")
             
          # Label the axes
         ax.set_xlabel(r'$z$')
@@ -120,7 +125,7 @@ class Cells_calculation:
         ax.legend(fontsize=12, loc='upper right')
         ax.grid(True)
 
-    def plot_windows_pos(self, ax = None, color_palette = 'hls'):
+    def plot_windows_pos(self, ax = None, color_palette = 'hls', plot_tot = True, plot_mag = True, plot_pos = True):
         if ax is None:
             ax = plt.gca()
             
@@ -129,27 +134,30 @@ class Cells_calculation:
         # Plot all three sets of data in one loop
         for i in range(0, 6):
             # Plot the window
-            ax.plot(self.z, 
-                     self.tracer_pos.get_window(self.z)[i, :], 
-                     linewidth=2, 
-                     color=colors[i-1], 
-                     label=f'Total window' if i == 1 else "")
-    
+            if plot_tot:
+                ax.plot(self.z, 
+                         self.tracer_pos.get_window(self.z)[i, :], 
+                         linewidth=2, 
+                         color=colors[i-1], 
+                         label=f'Total window' if i == 1 else "")
+
             # Plot the intrinsic alignment window
-            ax.plot(self.z, 
-                     self.tracer_pos.get_window_magnification(self.z)[i, :], 
-                     linewidth=2, 
-                     linestyle='--', 
-                     color=colors[i-1], 
-                     label=f'magnification' if i == 1 else "")
+            if plot_mag:
+                ax.plot(self.z, 
+                         self.tracer_pos.get_window_magnification(self.z)[i, :], 
+                         linewidth=2, 
+                         linestyle='--', 
+                         color=colors[i-1], 
+                         label=f'magnification' if i == 1 else "")
     
             # Plot the lensing window
-            ax.plot(self.z, 
-                     self.tracer_pos.get_window_positions(self.z)[i, :], 
-                     linewidth=2, 
-                     linestyle=':', 
-                     color=colors[i-1], 
-                     label=f'Positions' if i == 1 else "")
+            if plot_pos:
+                ax.plot(self.z, 
+                         self.tracer_pos.get_window_positions(self.z)[i, :], 
+                         linewidth=2, 
+                         linestyle=':', 
+                         color=colors[i-1], 
+                         label=f'Positions' if i == 1 else "")
 
         # Label the axes
         ax.set_xlabel(r'$z$')
@@ -237,7 +245,7 @@ class Cells_calculation:
 # Written as a child class of Cells_calculation to avoid repetitive code
 class Cells_calculation_Weyl(Cells_calculation):
     def __init__(self, perturbations, dndz_pos, dndz_she, z,
-                 use_Weyl_perturbations=False, z_ini=10):
+                 use_Weyl_perturbations=False, z_ini=10, include_rsd = False):
         """
         Build a Weyl-perturbation-aware Cells_calculation by reusing the parent
         initialization and then replacing the position tracers with Weyl variants.
@@ -263,14 +271,11 @@ class Cells_calculation_Weyl(Cells_calculation):
         super().__init__(self.perturbations, dndz_pos, dndz_she, z)
 
         # compute lens n(z) effective redshifts and derived params for Weyl tracers
-        # (I preserved your original calls / names — adjust if your functions have different signatures)
         self.z_effs = compute_zeffs(dndz_pos, z)
         self.Omegam_vals, self.sigma8_vals, self.Jhat_vals = Omegam_sigma8_Jhat_vals(
             self.z_effs, self.background, self.perturbations
         )
-
-        # Replace parent's position / GGL tracers with Weyl-specific ones
-        # (these constructors are from your code snippet)
+        
         self.tracer_pos_GGL = PositionsTracer_Weyl_GGL(
             perturbations=self.perturbations,
             dndz=self.dndz_pos,
@@ -282,15 +287,16 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'magnification_bias_1': 1.0, 'magnification_bias_2': 1.0,
                 'magnification_bias_3': 1.0, 'magnification_bias_4': 1.0,
                 'magnification_bias_5': 1.0, 'magnification_bias_6': 1.0,
-                'dz_pos_1': 0.0001, 'dz_pos_2': 0.0001,
-                'dz_pos_3': 0.0001, 'dz_pos_4': 0.0001,
-                'dz_pos_5': 0.0001, 'dz_pos_6': 0.0001
+                'dz_pos_1': 0.000, 'dz_pos_2': 0.000,
+                'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
+                'dz_pos_5': 0.000, 'dz_pos_6': 0.000
             },
             Jhat_params={
                 'Jhat_bin0': self.Jhat_vals[0], 'Jhat_bin1': self.Jhat_vals[1],
                 'Jhat_bin2': self.Jhat_vals[2], 'Jhat_bin3': self.Jhat_vals[3],
                 'Jhat_bin4': self.Jhat_vals[4], 'Jhat_bin5': self.Jhat_vals[5]
-            }
+            },
+            include_rsd = include_rsd
         )
 
         self.tracer_pos_GC = PositionsTracer_Weyl_GC(
@@ -304,15 +310,12 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'magnification_bias_1': 1.0, 'magnification_bias_2': 1.0,
                 'magnification_bias_3': 1.0, 'magnification_bias_4': 1.0,
                 'magnification_bias_5': 1.0, 'magnification_bias_6': 1.0,
-                'dz_pos_1': 0.0001, 'dz_pos_2': 0.0001,
-                'dz_pos_3': 0.0001, 'dz_pos_4': 0.0001,
-                'dz_pos_5': 0.0001, 'dz_pos_6': 0.0001
-            }
+                'dz_pos_1': 0.000, 'dz_pos_2': 0.000,
+                'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
+                'dz_pos_5': 0.000, 'dz_pos_6': 0.000
+            },
+            include_rsd = include_rsd
         )
-
-        # keep parent's shear tracer (or replace if you need a Weyl-specific shear tracer)
-        # parent's self.tracer_she already exists because we called super().__init__ above.
-        # If you need a different ShearTracer for Weyl, you can replace it here.
 
         # For compatibility with inherited plotting methods that expect self.tracer_pos:
         # set self.tracer_pos to one of the Weyl tracers (choose whichever is more appropriate;
@@ -335,10 +338,11 @@ class Cells_calculation_Weyl(Cells_calculation):
             **twopoint_pospos.get_Cl(self.ells, 0, self.perturbations.k),
             **twopoint_posshe.get_Cl(self.ells, 0, self.perturbations.k)
         }
-
-    # inherit plot_windows_she from parent (it uses self.tracer_she and self.perturbations)
+        
     # override plot_windows_pos to provide pos_type/rescale behavior specific to Weyl
-    def plot_windows_pos(self, pos_type, ax=None, color_palette='hls', rescale=True):
+
+    
+    def plot_windows_pos(self, pos_type, ax=None, color_palette='hls', rescale=True, plot_tot = True, plot_mag = True, plot_pos = True):
         """
         pos_type: 'GC' or 'GGL' to choose which Weyl position tracer to plot.
         This method intentionally differs from the base-class plot_windows_pos signature.
@@ -352,18 +356,22 @@ class Cells_calculation_Weyl(Cells_calculation):
 
         # compute rescaling factors if requested
         if rescale:
+            growth = self.perturbations.growth_factor(self.z,np.array([self.perturbations.k[0]]))[:,0] / self.perturbations.growth_factor(np.array([self.z_ini]),np.array([self.perturbations.k[0]]))[0,0] 
             if pos_type == 'GC':
                 # assume tracer_pos has attribute sigma8_ini as in your snippet
-                rescale_by = np.array(self.sigma8_vals) / tracer_pos.sigma8_ini
+                rescale_by_pos = np.array(self.sigma8_vals) / tracer_pos.sigma8_ini
+                rescale_by_mag = growth
             else:  # 'GGL'
                 Omega_mz = self.background.Omega_m(self.z)
                 # build list/array for per-bin rescaling; keep as numpy array for indexing
-                rescale_by = np.array([
+                rescale_by_pos = np.array([
                     (self.sigma8_vals[i] / tracer_pos.sigma8_ini)**2 * self.Omegam_vals[i] / Omega_mz
                     for i in range(6)
                 ])
+                rescale_by_mag = growth**2
         else:
-            rescale_by = np.ones(6)
+            rescale_by_pos = np.ones(6)
+            rescale_by_mag = 1
 
         if ax is None:
             ax = plt.gca()
@@ -371,20 +379,23 @@ class Cells_calculation_Weyl(Cells_calculation):
         colors = sns.color_palette(color_palette, 6)
 
         for i in range(6):
-            ax.plot(self.z,
-                    tracer_pos.get_window(self.z)[i, :] / rescale_by[i],
-                    linewidth=2, color=colors[i],
-                    label='Total window' if i == 0 else "")
+            if plot_tot:
+                ax.plot(self.z,
+                        tracer_pos.get_window(self.z)[i, :] / rescale_by_pos[i],
+                        linewidth=2, color=colors[i],
+                        label='Total window' if i == 0 else "")
 
-            ax.plot(self.z,
-                    tracer_pos.get_window_magnification(self.z)[i, :] / rescale_by[i],
-                    linewidth=2, linestyle='--', color=colors[i],
-                    label='Magnification' if i == 0 else "")
+            if plot_mag:
+                ax.plot(self.z,
+                        tracer_pos.get_window_magnification(self.z)[i, :] / rescale_by_mag,
+                        linewidth=2, linestyle='--', color=colors[i],
+                        label='Magnification' if i == 0 else "")
 
-            ax.plot(self.z,
-                    tracer_pos.get_window_positions(self.z)[i, :] / rescale_by[i],
-                    linewidth=2, linestyle=':', color=colors[i],
-                    label='Positions' if i == 0 else "")
+            if plot_pos:
+                ax.plot(self.z,
+                        tracer_pos.get_window_positions(self.z)[i, :] / rescale_by_pos[i],
+                        linewidth=2, linestyle=':', color=colors[i],
+                        label='Positions' if i == 0 else "")
 
         ax.set_xlabel(r'$z$')
         ax.set_ylabel(r'$W(z)$')
