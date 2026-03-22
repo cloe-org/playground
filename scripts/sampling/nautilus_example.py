@@ -8,6 +8,11 @@ import time
 # Import euclidlib for reading the Euclid data
 import euclidlib as el
 
+# Sampler specifications
+from nautilus import Prior
+from nautilus import Sampler
+from scipy.stats import norm
+
 # Import cloelib for cosmology and theoretical predictions
 from cloelib.cosmology.camb_cosmology import CAMBBackground
 from cloelib.cosmology.HMcode2020Emu_cosmology import HMemuLinearPerturbations, HMemuNonLinearPerturbations
@@ -15,8 +20,12 @@ from cloelib.cosmology.HMcode2020Emu_cosmology import HMemuLinearPerturbations, 
 # Import cloelike for likelihoods
 from cloelike.EuclidLikelihood_3x2pt_Cls import EuclidLikelihood_3x2pt_Cls
 
+# If you want to run this script, you need to download the data files 
+# from the link in the README and place them in the same folder as this script.
+
+
 # Get n(z)
-z_nz, nz_heracles = el.photo.redshift_distributions('nz_example.fits')
+z_nz, nz_heracles = el.phz.redshift_distributions('nz_example.fits')
 
 # Normalize and resample n(z) for both position and shear
 myz = np.linspace(1e-4, 3.0, 100)
@@ -28,11 +37,11 @@ my_dndz_pos_norm = normalize_and_resample(nz_heracles, z_nz, myz)
 my_dndz_she_norm = normalize_and_resample(nz_heracles, z_nz, myz)
 
 # We read with euclidlib v2025.2 (v2025.1 is also compatible)
-cells_data = el.photo.angular_power_spectra('synth_cells_5000_binned.fits')
-mixmat = el.photo.mixing_matrices('mixmat_identity_5000_binned.fits')
+cells_data = el.le3.pk_wl.angular_power_spectra('synthetic_coupled_cells.fits')
+mixmat = el.le3.pk_wl.mixing_matrices('mixmats_example.fits')
 
 # This matrix copies the format of seaborne, that produces a full 3x2pt matrix
-full_cov=np.load('cov_Gauss_3x2pt_2D_probe_zpair_ell_2500deg2_ellmax5000_Bmode_copy.npy')
+full_cov=np.load('covmat_2D.npz')['Gauss']
 
 def build_data(ell_key, cov, include_pos=False, include_she=False):
     data = {
@@ -48,18 +57,29 @@ def build_data(ell_key, cov, include_pos=False, include_she=False):
         data['dndz_she'] = my_dndz_she_norm
     return data
 
-def build_settings():
-    scale_cuts = {key: [10, 1500] for key in cells_data}
-    for key in cells_data:
-        if key[:2] == ('SHE', 'SHE'):
-            scale_cuts[key] = [scale_cuts[key], [0, 0]]
-    return {'n_ell_bins': 32, 'scale_cuts': scale_cuts}
+def build_settings(cls):
+    scale_cuts = {}
+
+    for key in cls:
+        if key[:2] == ('POS', 'POS'):
+            scale_cuts[key] = [10, 750]
+
+        elif key[:2] == ('POS', 'SHE'):
+            scale_cuts[key] = [10, 750]
+
+        elif key[:2] == ('SHE', 'SHE'):
+            scale_cuts[key] = [10, 1500]
+
+    return {
+        'n_ell_bins': 32,
+        'scale_cuts': scale_cuts
+    }
 
 # Build each dataset with correct dndz components
 data_3x2pt  = build_data(('POS', 'POS', 1, 1), full_cov,   include_pos=True, include_she=True)
 
 # Settings (same for all, built from cells_data structure)
-settings_3x2pt  = build_settings()
+settings_3x2pt  = build_settings(cells_data)
 
 # These are the default parameters used to generate the synthetic data, therefore, the log-likelihood should be close to zero.
 default_pars = {'H0':67,'Omega_cdm0':0.27,'Omega_b0':0.049,'ns':0.96,'As':2.1e-9,
@@ -90,9 +110,6 @@ like_instance = EuclidLikelihood_3x2pt_Cls(
         NonLinPerturbations=HMemuNonLinearPerturbations,
     )
 
-from nautilus import Prior
-from nautilus import Sampler
-from scipy.stats import norm
 prior = Prior()
 prior.add_parameter('ombh2', dist=norm(loc=0.0227, scale=0.00038))
 prior.add_parameter('omch2', dist=(0.11, 0.13))
@@ -101,8 +118,8 @@ prior.add_parameter('ns', dist=(0.6, 1.2))
 prior.add_parameter('H0', dist=(50, 90))
 prior.add_parameter('AIA', dist=(-1, 1))
 prior.add_parameter('EtaIA', dist=(-5, 5))
-#prior.add_parameter('w0', dist=(-2.0, -0.5))
-#prior.add_parameter('wa', dist=(-1.0, 1.0))
+prior.add_parameter('w0', dist=(-2.0, -0.5))
+prior.add_parameter('wa', dist=(-1.0, 1.0))
 prior.add_parameter('b1_photo_poly0', dist=(-2.0, 2.0))
 prior.add_parameter('b1_photo_poly1', dist=(-2.0, 2.0))
 prior.add_parameter('b1_photo_poly2', dist=(-2.0, 2.0))
