@@ -1,7 +1,5 @@
 *.pyc
-# avoids accidentaly committing fits files and data
-*.fits
-*.npy
-
-# Ignore all Jupyter checkpoint folders
+**/*.fits
+**/*.npy
+**/*.npz
 **/.ipynb_checkpoints/
