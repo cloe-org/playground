@@ -3,3 +3,6 @@
 **/*.npy
 **/*.npz
 **/.ipynb_checkpoints/
+**/.vscode/
+**/*.hdf5
+**/*.DS_Store
