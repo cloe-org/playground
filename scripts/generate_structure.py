@@ -93,7 +93,7 @@ def generate_mermaid(repo_root: Path) -> str:
     declarations, edges = _collect(repo_root, parent_id="root", is_root=True)
 
     lines = ["```mermaid", "graph LR"]
-    lines.append("    root[🗂 playground]")
+    lines.append(f"    root[🗂 {repo_root.name}]")
     lines.extend(declarations)
     lines.append("")
     lines.extend(edges)
