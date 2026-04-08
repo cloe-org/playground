@@ -1,6 +1,9 @@
-# 🛝 Playground Repository
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/2dadf56f-9d51-4cda-83e7-97ac0ca1ba97" alt="playground banner" width="400">
+</p>
 
-Welcome to the **Playground** repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀
+
+**Playground repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀**
 
 This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the `cloe` organisation.
 
@@ -18,6 +21,7 @@ The repository is organized as follows:
 
 ```
 playground/
+│── docs/            # Documentation assets (logos, banners, images)
 │── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood with cloelib and cloelike
 │── validation/      # Jupyter notebooks for comparison of cosmological observables against `cloelib`
 │── exercises/       # Jupyter notebooks with exercises that use `cloelib` for teaching purposes
