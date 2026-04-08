@@ -2,9 +2,8 @@
   <img src="https://github.com/user-attachments/assets/2dadf56f-9d51-4cda-83e7-97ac0ca1ba97" alt="playground banner" width="400">
 </p>
 
-# 🛝 Playground Repository
 
-Welcome to the **Playground** repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀
+**Playground repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀**
 
 This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the `cloe` organisation.
 
