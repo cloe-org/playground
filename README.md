@@ -13,8 +13,27 @@ The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en
 
 Happy learning! 🎉
 
-## 🔧 Features
-- Tutorials on how to run `cloelib`, `cloelike` and get around the cloe-org ecosystem
+## 📦 Installation
+To use this repository, clone it, no installation needed!
+
+```bash
+git clone https://github.com/cloe-org/playground.git
+cd playground
+```
+
+It might require as dependencies `cloelib`, `cloelike`, `euclidlib` and others.
+
+## 🚀 Usage
+You can run the provided notebooks for experimentation!
+
+```bash
+jupyter notebook tutorials/observables/photo.ipynb
+jupyter notebook tutorials/observables/spectro.ipynb
+jupyter notebook tutorials/observables/bao.ipynb
+```
+
+## 📬 Contact
+For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).
 
 ## 📂 Structure
 The repository is organized as follows:
@@ -74,28 +93,6 @@ graph LR
     root__validation --> root__validation__validation_ccl_ipynb
 ```
 <!-- REPO-STRUCTURE-END -->
-
-## 📦 Installation
-To use this repository, clone it, no installation needed!
-
-```bash
-git clone https://github.com/cloe-org/playground.git
-cd playground
-```
-
-It might require as dependencies `cloelib`, `cloelike`, `euclidlib` and others.
-
-## 🚀 Usage
-You can run the provided notebooks for experimentation!
-
-```bash
-jupyter notebook tutorials/observables/photo.ipynb
-jupyter notebook tutorials/observables/spectro.ipynb
-jupyter notebook tutorials/observables/bao.ipynb
-```
-
-## 📬 Contact
-For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).
 
 ## 🤝 Contributing
 This project follows the [all-contributors](https://allcontributors.org) specification. Contributions of any kind welcome!
