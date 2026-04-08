@@ -9,7 +9,7 @@ This repository serves as a sandbox for tutorials, exercises, and validation for
 
 To explore the contents of this repository, you may need to download synthetic example data available at [Zenodo – cloe-org Community](https://zenodo.org/communities/cloe-org/records).
 
-The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest/intro.html) library.
+The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest) library.
 
 Happy learning! 🎉
 
