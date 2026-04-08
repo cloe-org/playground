@@ -79,6 +79,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/KlaraBertmann"><img src="https://avatars.githubusercontent.com/u/153739278?v=4?s=100" width="100px;" alt="KlaraBertmann"/><br /><sub><b>KlaraBertmann</b></sub></a><br /><a href="#doc-KlaraBertmann" title="Documentation">📖</a> <a href="#ideas-KlaraBertmann" title="Ideas, Planning, & Feedback">🤔</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/jipdebuck"><img src="https://avatars.githubusercontent.com/u/236796982?v=4?s=100" width="100px;" alt="Jip de Buck"/><br /><sub><b>Jip de Buck</b></sub></a><br /><a href="#bug-jipdebuck" title="Bug reports">🐛</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://ntessore.page"><img src="https://avatars.githubusercontent.com/u/3993688?v=4?s=100" width="100px;" alt="Nicolas Tessore"/><br /><sub><b>Nicolas Tessore</b></sub></a><br /><a href="#bug-ntessore" title="Bug reports">🐛</a></td>
+    </tr>
   </tbody>
 </table>
 
