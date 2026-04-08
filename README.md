@@ -19,15 +19,61 @@ Happy learning! 🎉
 ## 📂 Structure
 The repository is organized as follows:
 
+<!-- REPO-STRUCTURE-START -->
+```mermaid
+graph LR
+    root[🗂 playground]
+    root__docs[docs/]
+    root__exercises[exercises/]
+    root__exercises__lensing_growth_factor_ipynb[lensing_growth_factor.ipynb]
+    root__scripts[scripts/]
+    root__scripts__sampling[sampling/]
+    root__scripts__sampling__nautilus_example_py[nautilus_example.py]
+    root__scripts__generate_structure_py[generate_structure.py]
+    root__tutorials[tutorials/]
+    root__tutorials__cosmology[cosmology/]
+    root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
+    root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
+    root__tutorials__likelihood[likelihood/]
+    root__tutorials__likelihood__bao_likelihood_ipynb[bao_likelihood.ipynb]
+    root__tutorials__likelihood__photometric_likelihoods_ipynb[photometric_likelihoods.ipynb]
+    root__tutorials__likelihood__spectroscopic_likelihoods_ipynb[spectroscopic_likelihoods.ipynb]
+    root__tutorials__observables[observables/]
+    root__tutorials__observables__bao_ipynb[bao.ipynb]
+    root__tutorials__observables__photo_ipynb[photo.ipynb]
+    root__tutorials__observables__spectro_ipynb[spectro.ipynb]
+    root__tutorials__profiling[profiling/]
+    root__tutorials__profiling__time_profiling_ipynb[time_profiling.ipynb]
+    root__validation[validation/]
+    root__validation__validation_CosmoSIS_ipynb[validation_CosmoSIS.ipynb]
+    root__validation__validation_ccl_ipynb[validation_ccl.ipynb]
+
+    root --> root__docs
+    root --> root__exercises
+    root__exercises --> root__exercises__lensing_growth_factor_ipynb
+    root --> root__scripts
+    root__scripts --> root__scripts__sampling
+    root__scripts__sampling --> root__scripts__sampling__nautilus_example_py
+    root__scripts --> root__scripts__generate_structure_py
+    root --> root__tutorials
+    root__tutorials --> root__tutorials__cosmology
+    root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
+    root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
+    root__tutorials --> root__tutorials__likelihood
+    root__tutorials__likelihood --> root__tutorials__likelihood__bao_likelihood_ipynb
+    root__tutorials__likelihood --> root__tutorials__likelihood__photometric_likelihoods_ipynb
+    root__tutorials__likelihood --> root__tutorials__likelihood__spectroscopic_likelihoods_ipynb
+    root__tutorials --> root__tutorials__observables
+    root__tutorials__observables --> root__tutorials__observables__bao_ipynb
+    root__tutorials__observables --> root__tutorials__observables__photo_ipynb
+    root__tutorials__observables --> root__tutorials__observables__spectro_ipynb
+    root__tutorials --> root__tutorials__profiling
+    root__tutorials__profiling --> root__tutorials__profiling__time_profiling_ipynb
+    root --> root__validation
+    root__validation --> root__validation__validation_CosmoSIS_ipynb
+    root__validation --> root__validation__validation_ccl_ipynb
 ```
-playground/
-│── docs/            # Documentation assets (logos, banners, images)
-│── tutorials/       # Jupyter notebooks for cosmological codes, computing observables and evaluating the likelihood with cloelib and cloelike
-│── validation/      # Jupyter notebooks for comparison of cosmological observables against `cloelib`
-│── exercises/       # Jupyter notebooks with exercises that use `cloelib` for teaching purposes
-│── scripts/         # Python scripts with sampling examples
-│── README.md        # This file
-```
+<!-- REPO-STRUCTURE-END -->
 
 ## 📦 Installation
 To use this repository, clone it, no installation needed!
