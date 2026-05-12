@@ -2,6 +2,7 @@
 # avoids accidentaly committing fits files and data
 *.fits
 *.npy
+*.pkl
 
 # Ignore all Jupyter checkpoint folders
 **/.ipynb_checkpoints/
