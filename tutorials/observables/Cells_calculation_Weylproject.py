@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from cloelib.observables.photo import ShearTracer, PositionsTracer
 from cloelib.observables.photo_Weyl import PositionsTracer_Weyl_GC, PositionsTracer_Weyl_GGL
 from cloelib.summary_statistics.angular_two_point import AngularTwoPoint
-from cloelib.cosmology.Weyl_perturbations import Weyl_Perturbations
+from cloelib.cosmology.Weyl_cosmology import Weyl_Perturbations
 
 # Plot style
 import seaborn as sns
@@ -61,10 +61,13 @@ class Cells_calculation:
                                               'magnification_bias_1': 1.0, 'magnification_bias_2': 1.0,
                                               'magnification_bias_3': 1.0, 'magnification_bias_4': 1.0,
                                               'magnification_bias_5': 1.0, 'magnification_bias_6': 1.0,
+                                              'width_pos_1': 1.0, 'width_pos_2': 1.0,
+                                              'width_pos_3': 1.0, 'width_pos_4': 1.0,
+                                              'width_pos_5': 1.0, 'width_pos_6': 1.0,
                                               'dz_pos_1': 0.000, 'dz_pos_2': 0.000,
                                               'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
                                               'dz_pos_5': 0.000, 'dz_pos_6': 0.000},
-                            include_rsd = include_rsd
+                                          include_rsd = include_rsd
                                          )
 
         self.tracer_she = ShearTracer(perturbations = self.perturbations, 
@@ -74,6 +77,9 @@ class Cells_calculation:
                                               'multiplicative_bias_1': 0.00, 'multiplicative_bias_2': 0.00,
                                               'multiplicative_bias_3': 0.00, 'multiplicative_bias_4': 0.00,
                                               'multiplicative_bias_5': 0.00, 'multiplicative_bias_6': 0.00,
+                                              'width_shear_1': 1.0, 'width_shear_2': 1.0,
+                                              'width_shear_3': 1.0, 'width_shear_4': 1.0,
+                                              'width_shear_5': 1.0, 'width_shear_6': 1.0,
                                               'dz_shear_1': 0.000, 'dz_shear_2': 0.000,
                                               'dz_shear_3': 0.000, 'dz_shear_4': 0.000,
                                               'dz_shear_5': 0.000, 'dz_shear_6': 0.000})
@@ -218,17 +224,17 @@ class Cells_calculation:
         ax.set_yscale('symlog', linthresh=1e-4)
         ax.grid(True)
 
-    def plot_cells_GGL_compare(self, other, ij_list, ax = None, color_palette = 'rocket', in_percent = True, yscale = 'linear'):
+    def plot_cells_GGL_compare(self, other, ij_list, ax = None, color_palette = 'rocket', in_percent = True, yscale = 'linear', linestyle = '--'):
         if ax is None:
             ax = plt.gca()
         for k in range(len(ij_list)):
             [i,j] = ij_list[k] 
             if in_percent:
-                factor = 100/(self.cells['POS', 'SHE', i+1, i+1][0][:]*self.ells*(2*self.ells+1))
+                factor = 100/(self.cells['POS', 'SHE', i, j][0][:]*self.ells*(2*self.ells+1))
             else:
                 factor = 1
             plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*np.abs(self.cells['POS', 'SHE', i, j][0][:]-other.cells['POS', 'SHE', i, j][0][:]), 
-                       label = '$n_{{{}}}$'.format(i)+'-$n_{{{}}}$'.format(j), linewidth=2, linestyle = '--', color=sns.color_palette(color_palette, len(ij_list))[k])
+                       label = '$n_{{{}}}$'.format(i)+'-$n_{{{}}}$'.format(j), linewidth=2, linestyle = linestyle, color=sns.color_palette(color_palette, len(ij_list))[k])
         ax.set_xlabel(r'$\ell$')
         if in_percent:
             ax.set_ylabel(r'$\Delta C^{\rm gE}(\ell)$'+' in %')
@@ -244,20 +250,14 @@ class Cells_calculation:
 # Again, this could be further generalized if we need some more flexibility
 # Written as a child class of Cells_calculation to avoid repetitive code
 class Cells_calculation_Weyl(Cells_calculation):
-    def __init__(self, perturbations, dndz_pos, dndz_she, z,
-                 use_Weyl_perturbations=False, z_ini=10, include_rsd = False):
+    def __init__(self, perturbations_nl, perturbations_lin, dndz_pos, dndz_she, z, z_ini=10, include_rsd = False):
         """
         Build a Weyl-perturbation-aware Cells_calculation by reusing the parent
         initialization and then replacing the position tracers with Weyl variants.
         """
-        # keep a handle on background whether we replace perturbations or not
-        self.background = perturbations.background
-
-        # choose perturbations (Weyl or original)
-        if use_Weyl_perturbations:
-            self.perturbations = Weyl_Perturbations(perturbations, z, z_ini)
-        else:
-            self.perturbations = perturbations
+        # set background and perturbations class
+        self.background = perturbations_nl.background
+        self.perturbations = Weyl_Perturbations(perturbations_nl, perturbations_lin, z, z_ini)
 
         # store inputs
         self.dndz_pos = dndz_pos
@@ -287,6 +287,9 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'magnification_bias_1': 1.0, 'magnification_bias_2': 1.0,
                 'magnification_bias_3': 1.0, 'magnification_bias_4': 1.0,
                 'magnification_bias_5': 1.0, 'magnification_bias_6': 1.0,
+                'width_pos_1': 1.0, 'width_pos_2': 1.0,
+                'width_pos_3': 1.0, 'width_pos_4': 1.0,
+                'width_pos_5': 1.0, 'width_pos_6': 1.0,
                 'dz_pos_1': 0.000, 'dz_pos_2': 0.000,
                 'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
                 'dz_pos_5': 0.000, 'dz_pos_6': 0.000
@@ -310,6 +313,9 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'magnification_bias_1': 1.0, 'magnification_bias_2': 1.0,
                 'magnification_bias_3': 1.0, 'magnification_bias_4': 1.0,
                 'magnification_bias_5': 1.0, 'magnification_bias_6': 1.0,
+                'width_pos_1': 1.0, 'width_pos_2': 1.0,
+                'width_pos_3': 1.0, 'width_pos_4': 1.0,
+                'width_pos_5': 1.0, 'width_pos_6': 1.0,
                 'dz_pos_1': 0.000, 'dz_pos_2': 0.000,
                 'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
                 'dz_pos_5': 0.000, 'dz_pos_6': 0.000
