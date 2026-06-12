@@ -185,7 +185,8 @@ class Cells_calculation:
         ax.legend(fontsize=14)
         ax.grid(True)
 
-    def plot_cells_GC_compare(self, other, ax = None, color_palette = 'rocket', in_percent = True, yscale = 'linear'):
+    def plot_cells_GC_compare(self, other, ax = None, color_palette = 'rocket', in_percent = True, yscale = 'linear', 
+                              linestyle='-'):
         if ax is None:
             ax = plt.gca()
         for i in range(0, 6):
@@ -194,7 +195,7 @@ class Cells_calculation:
             else:
                 factor = 1
             plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*(self.cells['POS', 'POS', i+1, i+1][:]-other.cells['POS', 'POS', i+1, i+1][:]) , 
-                        label = '$n_{{{}}}$'.format(i+1), linewidth=2, color=sns.color_palette(color_palette, 6)[i])
+                        label = '$n_{{{}}}$'.format(i+1), linestyle = linestyle, linewidth=2, color=sns.color_palette(color_palette, 6)[i])
         ax.set_xlabel(r'$\ell$')
         if in_percent:
             ax.set_ylabel(r'$\Delta C^{\rm gg}(\ell)$'+' in %')
@@ -257,7 +258,11 @@ class Cells_calculation_Weyl(Cells_calculation):
         """
         # set background and perturbations class
         self.background = perturbations_nl.background
-        self.perturbations = Weyl_Perturbations(perturbations_nl, perturbations_lin, z, z_ini)
+        self.perturbations = Weyl_Perturbations(perturbations_nl, 
+                                                perturbations_lin, 
+                                                z, 
+                                                z_ini, 
+                                                )
 
         # store inputs
         self.dndz_pos = dndz_pos
@@ -299,7 +304,7 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'Jhat_bin2': self.Jhat_vals[2], 'Jhat_bin3': self.Jhat_vals[3],
                 'Jhat_bin4': self.Jhat_vals[4], 'Jhat_bin5': self.Jhat_vals[5]
             },
-            include_rsd = include_rsd
+            include_rsd = include_rsd,
         )
 
         self.tracer_pos_GC = PositionsTracer_Weyl_GC(
@@ -320,7 +325,7 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
                 'dz_pos_5': 0.000, 'dz_pos_6': 0.000
             },
-            include_rsd = include_rsd
+            include_rsd = include_rsd,
         )
 
         # For compatibility with inherited plotting methods that expect self.tracer_pos:
