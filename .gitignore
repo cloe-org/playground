@@ -4,6 +4,7 @@
 *.npy
 *.npz
 *.pkl
+*.png
 
 # Ignore all Jupyter checkpoint folders
 **/.ipynb_checkpoints/
