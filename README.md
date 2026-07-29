@@ -54,6 +54,7 @@ graph LR
     root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
     root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
     root__tutorials__likelihood[likelihood/]
+    root__tutorials__likelihood__GCspectro_FS+BAO_likelihood_ipynb[GCspectro_FS+BAO_likelihood.ipynb]
     root__tutorials__likelihood__bao_likelihood_ipynb[bao_likelihood.ipynb]
     root__tutorials__likelihood__photometric_likelihoods_ipynb[photometric_likelihoods.ipynb]
     root__tutorials__likelihood__spectroscopic_likelihoods_ipynb[spectroscopic_likelihoods.ipynb]
@@ -79,6 +80,7 @@ graph LR
     root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
     root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
     root__tutorials --> root__tutorials__likelihood
+    root__tutorials__likelihood --> root__tutorials__likelihood__GCspectro_FS+BAO_likelihood_ipynb
     root__tutorials__likelihood --> root__tutorials__likelihood__bao_likelihood_ipynb
     root__tutorials__likelihood --> root__tutorials__likelihood__photometric_likelihoods_ipynb
     root__tutorials__likelihood --> root__tutorials__likelihood__spectroscopic_likelihoods_ipynb
