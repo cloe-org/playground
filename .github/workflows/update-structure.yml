@@ -13,6 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -26,5 +28,17 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add README.md
+          # create a commit only if there are staged changes
           git diff --cached --quiet || git commit -m "docs: update repository structure diagram [skip ci]"
-          git push
+
+      - name: Create pull request for changes
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "docs: update repository structure diagram [skip ci]"
+          branch: "auto/update-structure-${{ github.run_id }}"
+          title: "Update repository structure diagram"
+          body: |
+            Automated update of repository structure diagram.
+          labels: automated
+          delete-branch: true
