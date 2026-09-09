@@ -54,14 +54,16 @@ graph LR
     root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
     root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
     root__tutorials__likelihood[likelihood/]
-    root__tutorials__likelihood__bao_likelihood_ipynb[bao_likelihood.ipynb]
+    root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb[likelihood_GCspectro_BAO.ipynb]
+    root__tutorials__likelihood__likelihood_GCspectro_Pls_ipynb[likelihood_GCspectro_Pls.ipynb]
+    root__tutorials__likelihood__likelihood_GCspectro_Pls_BAO_ipynb[likelihood_GCspectro_Pls_BAO.ipynb]
     root__tutorials__likelihood__photometric_likelihoods_ipynb[photometric_likelihoods.ipynb]
-    root__tutorials__likelihood__spectroscopic_likelihoods_ipynb[spectroscopic_likelihoods.ipynb]
     root__tutorials__observables[observables/]
     root__tutorials__observables__bao_ipynb[bao.ipynb]
     root__tutorials__observables__photo_ipynb[photo.ipynb]
     root__tutorials__observables__spectro_ipynb[spectro.ipynb]
     root__tutorials__profiling[profiling/]
+    root__tutorials__profiling__time_comparison_ipynb[time_comparison.ipynb]
     root__tutorials__profiling__time_profiling_ipynb[time_profiling.ipynb]
     root__validation[validation/]
     root__validation__validation_CosmoSIS_ipynb[validation_CosmoSIS.ipynb]
@@ -79,14 +81,16 @@ graph LR
     root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
     root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
     root__tutorials --> root__tutorials__likelihood
-    root__tutorials__likelihood --> root__tutorials__likelihood__bao_likelihood_ipynb
+    root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb
+    root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_Pls_ipynb
+    root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_Pls_BAO_ipynb
     root__tutorials__likelihood --> root__tutorials__likelihood__photometric_likelihoods_ipynb
-    root__tutorials__likelihood --> root__tutorials__likelihood__spectroscopic_likelihoods_ipynb
     root__tutorials --> root__tutorials__observables
     root__tutorials__observables --> root__tutorials__observables__bao_ipynb
     root__tutorials__observables --> root__tutorials__observables__photo_ipynb
     root__tutorials__observables --> root__tutorials__observables__spectro_ipynb
     root__tutorials --> root__tutorials__profiling
+    root__tutorials__profiling --> root__tutorials__profiling__time_comparison_ipynb
     root__tutorials__profiling --> root__tutorials__profiling__time_profiling_ipynb
     root --> root__validation
     root__validation --> root__validation__validation_CosmoSIS_ipynb
@@ -124,6 +128,8 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://ntessore.page"><img src="https://avatars.githubusercontent.com/u/3993688?v=4?s=100" width="100px;" alt="Nicolas Tessore"/><br /><sub><b>Nicolas Tessore</b></sub></a><br /><a href="#bug-ntessore" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ivansladoljev"><img src="https://avatars.githubusercontent.com/u/144113061?v=4?s=100" width="100px;" alt="Ivan Sladoljev"/><br /><sub><b>Ivan Sladoljev</b></sub></a><br /><a href="#code-ivansladoljev" title="Code">💻</a> <a href="#ideas-ivansladoljev" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ytchang05"><img src="https://avatars.githubusercontent.com/u/67809413?v=4?s=100" width="100px;" alt="Yu-Ting"/><br /><sub><b>Yu-Ting</b></sub></a><br /><a href="#code-ytchang05" title="Code">💻</a> <a href="#bug-ytchang05" title="Bug reports">🐛</a></td>
     </tr>
   </tbody>
 </table>
