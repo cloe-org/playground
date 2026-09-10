@@ -168,6 +168,26 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "ivansladoljev",
+      "name": "Ivan Sladoljev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/144113061?v=4",
+      "profile": "https://github.com/ivansladoljev",
+      "contributions": [
+        "code",
+        "ideas"
+      ]
+    },
+    {
+      "login": "ytchang05",
+      "name": "Yu-Ting",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67809413?v=4",
+      "profile": "https://github.com/ytchang05",
+      "contributions": [
+        "code",
+        "bug"
+      ]
     }
   ],
   "files": [
