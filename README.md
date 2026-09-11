@@ -62,6 +62,7 @@ graph LR
     root__tutorials__observables__bao_ipynb[bao.ipynb]
     root__tutorials__observables__photo_ipynb[photo.ipynb]
     root__tutorials__observables__spectro_ipynb[spectro.ipynb]
+    root__tutorials__observables__cmb_ipynb[cmb.ipynb]
     root__tutorials__profiling[profiling/]
     root__tutorials__profiling__time_comparison_ipynb[time_comparison.ipynb]
     root__tutorials__profiling__time_profiling_ipynb[time_profiling.ipynb]
