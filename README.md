@@ -52,6 +52,7 @@ graph LR
     root__tutorials[tutorials/]
     root__tutorials__cosmology[cosmology/]
     root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
+    root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb[cosmopower_jax_cosmology.ipynb]
     root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
     root__tutorials__likelihood[likelihood/]
     root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb[likelihood_GCspectro_BAO.ipynb]
@@ -60,9 +61,9 @@ graph LR
     root__tutorials__likelihood__photometric_likelihoods_ipynb[photometric_likelihoods.ipynb]
     root__tutorials__observables[observables/]
     root__tutorials__observables__bao_ipynb[bao.ipynb]
+    root__tutorials__observables__cmb_ipynb[cmb.ipynb]
     root__tutorials__observables__photo_ipynb[photo.ipynb]
     root__tutorials__observables__spectro_ipynb[spectro.ipynb]
-    root__tutorials__observables__cmb_ipynb[cmb.ipynb]
     root__tutorials__profiling[profiling/]
     root__tutorials__profiling__time_comparison_ipynb[time_comparison.ipynb]
     root__tutorials__profiling__time_profiling_ipynb[time_profiling.ipynb]
@@ -80,6 +81,7 @@ graph LR
     root --> root__tutorials
     root__tutorials --> root__tutorials__cosmology
     root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
+    root__tutorials__cosmology --> root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb
     root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
     root__tutorials --> root__tutorials__likelihood
     root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb
@@ -88,6 +90,7 @@ graph LR
     root__tutorials__likelihood --> root__tutorials__likelihood__photometric_likelihoods_ipynb
     root__tutorials --> root__tutorials__observables
     root__tutorials__observables --> root__tutorials__observables__bao_ipynb
+    root__tutorials__observables --> root__tutorials__observables__cmb_ipynb
     root__tutorials__observables --> root__tutorials__observables__photo_ipynb
     root__tutorials__observables --> root__tutorials__observables__spectro_ipynb
     root__tutorials --> root__tutorials__profiling
