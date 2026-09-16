@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from cloelib.observables.photo import ShearTracer, PositionsTracer
 from cloelib.observables.photo_Weyl import PositionsTracer_Weyl_GC, PositionsTracer_Weyl_GGL
 from cloelib.summary_statistics.angular_two_point import AngularTwoPoint
-from cloelib.cosmology.Weyl_cosmology import Weyl_Perturbations
+from cloelib.cosmology.Weyl_cosmology import WeylLinearPerturbations, WeylNonLinearPerturbations
 
 # Plot style
 import seaborn as sns
@@ -31,7 +31,7 @@ def compute_zeffs(dndz, zs):
     
 def Omegam_sigma8_Jhat_vals(z_effs, background, perturbations):
     # Calcuate growth factors at z_eff, normalized to 1 at z=0.
-    growth_factors_zeff = perturbations.growth_factor(z_effs,np.array([perturbations.k[0]]))[:,0] 
+    growth_factors_zeff = np.squeeze(perturbations.growth_factor(z_effs,np.array([perturbations.k[0]])))
     #Omega_m at z_eff
     Omegam_vals = background.Omega_m(z_effs)
     #sigma8_0
@@ -185,8 +185,7 @@ class Cells_calculation:
         ax.legend(fontsize=14)
         ax.grid(True)
 
-    def plot_cells_GC_compare(self, other, ax = None, color_palette = 'rocket', in_percent = True, yscale = 'linear', 
-                              linestyle='-'):
+    def plot_cells_GC_compare(self, other, ax = None, color_palette = 'rocket', in_percent = True, yscale = 'linear'):
         if ax is None:
             ax = plt.gca()
         for i in range(0, 6):
@@ -195,7 +194,7 @@ class Cells_calculation:
             else:
                 factor = 1
             plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*(self.cells['POS', 'POS', i+1, i+1][:]-other.cells['POS', 'POS', i+1, i+1][:]) , 
-                        label = '$n_{{{}}}$'.format(i+1), linestyle = linestyle, linewidth=2, color=sns.color_palette(color_palette, 6)[i])
+                        label = '$n_{{{}}}$'.format(i+1), linewidth=2, color=sns.color_palette(color_palette, 6)[i])
         ax.set_xlabel(r'$\ell$')
         if in_percent:
             ax.set_ylabel(r'$\Delta C^{\rm gg}(\ell)$'+' in %')
@@ -234,7 +233,7 @@ class Cells_calculation:
                 factor = 100/(self.cells['POS', 'SHE', i, j][0][:]*self.ells*(2*self.ells+1))
             else:
                 factor = 1
-            plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*np.abs(self.cells['POS', 'SHE', i, j][0][:]-other.cells['POS', 'SHE', i, j][0][:]), 
+            plt.semilogx(self.ells, factor*self.ells*(2*self.ells+1)*(self.cells['POS', 'SHE', i, j][0][:]-other.cells['POS', 'SHE', i, j][0][:]), 
                        label = '$n_{{{}}}$'.format(i)+'-$n_{{{}}}$'.format(j), linewidth=2, linestyle = linestyle, color=sns.color_palette(color_palette, len(ij_list))[k])
         ax.set_xlabel(r'$\ell$')
         if in_percent:
@@ -258,11 +257,8 @@ class Cells_calculation_Weyl(Cells_calculation):
         """
         # set background and perturbations class
         self.background = perturbations_nl.background
-        self.perturbations = Weyl_Perturbations(perturbations_nl, 
-                                                perturbations_lin, 
-                                                z, 
-                                                z_ini, 
-                                                )
+        Weyl_linear_perturbations = WeylLinearPerturbations(perturbations_lin, z, z_ini)
+        self.perturbations = WeylNonLinearPerturbations(perturbations_nl, Weyl_linear_perturbations, z, z_ini)
 
         # store inputs
         self.dndz_pos = dndz_pos
@@ -304,7 +300,7 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'Jhat_bin2': self.Jhat_vals[2], 'Jhat_bin3': self.Jhat_vals[3],
                 'Jhat_bin4': self.Jhat_vals[4], 'Jhat_bin5': self.Jhat_vals[5]
             },
-            include_rsd = include_rsd,
+            include_rsd = include_rsd
         )
 
         self.tracer_pos_GC = PositionsTracer_Weyl_GC(
@@ -325,7 +321,7 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
                 'dz_pos_5': 0.000, 'dz_pos_6': 0.000
             },
-            include_rsd = include_rsd,
+            include_rsd = include_rsd
         )
 
         # For compatibility with inherited plotting methods that expect self.tracer_pos:
