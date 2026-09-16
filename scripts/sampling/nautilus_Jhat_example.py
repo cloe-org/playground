@@ -123,7 +123,7 @@ def compute_zeffs(dndz, zs):
     
 def sigma8_Jhat_vals(z_effs, background, perturbations):
     # Calcuate growth factors at z_eff, normalized to 1 at z=0.
-    growth_factors_zeff = perturbations.growth_factor(z_effs,np.array([perturbations.k[0]]))[:,0] 
+    growth_factors_zeff = np.squeeze(perturbations.growth_factor(z_effs,perturbations.k[:1]))
     #Omega_m at z_eff
     Omegam_vals = background.Omega_m(z_effs)
     #sigma8_0
@@ -155,7 +155,7 @@ default_pars = {
     # Cosmological parameters
     'H0': 70, 'Omega_cdm0': 0.25, 'Omega_b0': 0.05,
     'ns': 0.96, 'As': 2.e-9, 'w0': -1, 'wa': 0,
-    'Omega_k0': 0, 'mnu': 0.06, 'gamma_MG': 0.545, 'N_mnu': 1,
+    'Omega_k0': 0, 'mnu': 0.06, 'gamma_MG': 0.545, 'N_mnu': 1, 'alpha_s': 0.0,
     # Intrinsic alignment parameters
     'log10TAGN': 7.8, 'AIA': 1.72, 'CIA': 0.0134, 'EtaIA': -0.41,
     # Parameters including galaxy bias x sigma_8 (one per tomographic bin)
@@ -220,11 +220,11 @@ prior = Prior()
 #         prior.add_parameter(name, dist=norm(loc=mean, scale=std)) for Gaussian
 
 # Cosmological parameters (wide priors)
-prior.add_parameter('ombh2', dist=norm(loc=0.0227, scale=0.00038))
-prior.add_parameter('omch2', dist=(0.11, 0.13))
-prior.add_parameter('logAs', dist=(np.log(1.7e-9*1e10), np.log(2.5e-9*1e10)))
-prior.add_parameter('ns', dist=(0.6, 1.2))
-prior.add_parameter('H0', dist=(50, 90))
+#prior.add_parameter('ombh2', dist=norm(loc=0.0227, scale=0.00038))
+#prior.add_parameter('omch2', dist=(0.11, 0.13))
+#prior.add_parameter('logAs', dist=(np.log(1.7e-9*1e10), np.log(2.5e-9*1e10)))
+#prior.add_parameter('ns', dist=(0.6, 1.2))
+#prior.add_parameter('H0', dist=(50, 90))
 
 # Intrinsic alignment parameters
 # Fix nuisance parameters for testing purposes
@@ -334,7 +334,7 @@ def main():
             like_Nautilus,
             n_live=4000,
             pool=pool,
-            filepath="checkpoint_2x2pt_Jhat.hdf5",
+            filepath="checkpoint_2x2pt_Jhat_fixed_cosmos.hdf5",
         )
 
         t_start = time.time()
@@ -343,7 +343,7 @@ def main():
 
     points, log_w, log_l = sampler.posterior()
     np.savez_compressed(
-        "chain_2x2pt_Jhat.npz",
+        "chain_2x2pt_Jhat_fixed_cosmo.npz",
         chain=points,
         weights=log_w,
         logl=log_l,
