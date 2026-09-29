@@ -7,7 +7,6 @@ on:
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   update-structure:
@@ -22,12 +21,17 @@ jobs:
       - name: Generate structure diagram
         run: python scripts/generate_structure.py --update
 
-      - name: Create pull request for README update
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "docs: update repository structure diagram [skip ci]"
-          title: "docs: update repository structure diagram"
-          body: "Automated update of the repository structure diagram in README.md."
-          add-paths: README.md
-          branch: "github-actions/update-structure"
-          delete-branch: true
+      - name: Commit and push README update branch
+        run: |
+          if git diff --quiet -- README.md; then
+            echo "README.md is already up to date."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git checkout -B github-actions/update-structure
+          git add README.md
+          git commit -m "docs: update repository structure diagram [skip ci]"
+          git push --force-with-lease origin HEAD:github-actions/update-structure
