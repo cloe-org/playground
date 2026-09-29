@@ -114,6 +114,7 @@ default_pars = {
     'H0': 70, 'Omega_cdm0': 0.25, 'Omega_b0': 0.05,
     'ns': 0.96, 'As': 2.e-9, 'w0': -1, 'wa': 0,
     'Omega_k0': 0, 'mnu': 0.06, 'gamma_MG': 0.545, 'N_mnu': 1,
+    'alpha_s': 0.0,
     # Intrinsic alignment parameters
     'log10TAGN': 7.8, 'AIA': 1.72, 'CIA': 0.0134, 'EtaIA': -0.41,
     # Galaxy bias parameters
