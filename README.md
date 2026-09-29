@@ -52,6 +52,7 @@ graph LR
     root__tutorials[tutorials/]
     root__tutorials__cosmology[cosmology/]
     root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
+    root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb[cosmopower_jax_cosmology.ipynb]
     root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
     root__tutorials__likelihood[likelihood/]
     root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb[likelihood_GCspectro_BAO.ipynb]
@@ -79,6 +80,7 @@ graph LR
     root --> root__tutorials
     root__tutorials --> root__tutorials__cosmology
     root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
+    root__tutorials__cosmology --> root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb
     root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
     root__tutorials --> root__tutorials__likelihood
     root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb
