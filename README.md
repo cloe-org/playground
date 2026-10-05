@@ -48,10 +48,13 @@ graph LR
     root__scripts[scripts/]
     root__scripts__sampling[sampling/]
     root__scripts__sampling__nautilus_example_py[nautilus_example.py]
+    root__scripts__sampling__nautilus_example_3x2pt_py[nautilus_example_3x2pt.py]
+    root__scripts__sampling__nautilus_example_WL_py[nautilus_example_WL.py]
     root__scripts__generate_structure_py[generate_structure.py]
     root__tutorials[tutorials/]
     root__tutorials__cosmology[cosmology/]
     root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
+    root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb[cosmopower_jax_cosmology.ipynb]
     root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
     root__tutorials__likelihood[likelihood/]
     root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb[likelihood_GCspectro_BAO.ipynb]
@@ -75,10 +78,13 @@ graph LR
     root --> root__scripts
     root__scripts --> root__scripts__sampling
     root__scripts__sampling --> root__scripts__sampling__nautilus_example_py
+    root__scripts__sampling --> root__scripts__sampling__nautilus_example_3x2pt_py
+    root__scripts__sampling --> root__scripts__sampling__nautilus_example_WL_py
     root__scripts --> root__scripts__generate_structure_py
     root --> root__tutorials
     root__tutorials --> root__tutorials__cosmology
     root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
+    root__tutorials__cosmology --> root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb
     root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
     root__tutorials --> root__tutorials__likelihood
     root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb
