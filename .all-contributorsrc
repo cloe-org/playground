@@ -73,7 +73,8 @@
       "profile": "https://github.com/josecolomanadal",
       "contributions": [
         "code",
-        "tutorial"
+        "tutorial",
+        "bug"
       ]
     },
     {
@@ -138,6 +139,64 @@
         "doc",
         "code",
         "ideas"
+      ]
+    },
+    {
+      "login": "KlaraBertmann",
+      "name": "KlaraBertmann",
+      "avatar_url": "https://avatars.githubusercontent.com/u/153739278?v=4",
+      "profile": "https://github.com/KlaraBertmann",
+      "contributions": [
+        "doc",
+        "ideas"
+      ]
+    },
+    {
+      "login": "jipdebuck",
+      "name": "Jip de Buck",
+      "avatar_url": "https://avatars.githubusercontent.com/u/236796982?v=4",
+      "profile": "https://github.com/jipdebuck",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ntessore",
+      "name": "Nicolas Tessore",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3993688?v=4",
+      "profile": "http://ntessore.page",
+      "contributions": [
+        "bug"
+      ]
+    },
+    {
+      "login": "ivansladoljev",
+      "name": "Ivan Sladoljev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/144113061?v=4",
+      "profile": "https://github.com/ivansladoljev",
+      "contributions": [
+        "code",
+        "ideas",
+        "bug"
+      ]
+    },
+    {
+      "login": "ytchang05",
+      "name": "Yu-Ting",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67809413?v=4",
+      "profile": "https://github.com/ytchang05",
+      "contributions": [
+        "code",
+        "bug"
+      ]
+    },
+    {
+      "login": "DavidNavarroG",
+      "name": "David Navarro Gironés",
+      "avatar_url": "https://avatars.githubusercontent.com/u/29857945?v=4",
+      "profile": "https://github.com/DavidNavarroG",
+      "contributions": [
+        "code"
       ]
     }
   ],

@@ -1,0 +1,33 @@
+name: Update repo structure diagram
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate structure diagram
+        run: python scripts/generate_structure.py --update
+
+      - name: Create pull request for README update
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "docs: update repository structure diagram [skip ci]"
+          title: "docs: update repository structure diagram"
+          body: "Automated update of the repository structure diagram in README.md."
+          add-paths: README.md
+          branch: "github-actions/update-structure"
+          delete-branch: true
