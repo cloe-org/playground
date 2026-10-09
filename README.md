@@ -47,7 +47,6 @@ graph LR
     root__exercises__lensing_growth_factor_ipynb[lensing_growth_factor.ipynb]
     root__scripts[scripts/]
     root__scripts__sampling[sampling/]
-    root__scripts__sampling__nautilus_example_py[nautilus_example.py]
     root__scripts__sampling__nautilus_example_3x2pt_py[nautilus_example_3x2pt.py]
     root__scripts__sampling__nautilus_example_WL_py[nautilus_example_WL.py]
     root__scripts__generate_structure_py[generate_structure.py]
@@ -64,11 +63,13 @@ graph LR
     root__tutorials__observables[observables/]
     root__tutorials__observables__bao_ipynb[bao.ipynb]
     root__tutorials__observables__photo_ipynb[photo.ipynb]
+    root__tutorials__observables__photo_validation_TATT_CosmoSIS_ipynb[photo_validation_TATT_CosmoSIS.ipynb]
     root__tutorials__observables__spectro_ipynb[spectro.ipynb]
     root__tutorials__profiling[profiling/]
     root__tutorials__profiling__time_comparison_ipynb[time_comparison.ipynb]
     root__tutorials__profiling__time_profiling_ipynb[time_profiling.ipynb]
     root__validation[validation/]
+    root__validation__photo_autodiff_ipynb[photo_autodiff.ipynb]
     root__validation__validation_CosmoSIS_ipynb[validation_CosmoSIS.ipynb]
     root__validation__validation_ccl_ipynb[validation_ccl.ipynb]
 
@@ -77,7 +78,6 @@ graph LR
     root__exercises --> root__exercises__lensing_growth_factor_ipynb
     root --> root__scripts
     root__scripts --> root__scripts__sampling
-    root__scripts__sampling --> root__scripts__sampling__nautilus_example_py
     root__scripts__sampling --> root__scripts__sampling__nautilus_example_3x2pt_py
     root__scripts__sampling --> root__scripts__sampling__nautilus_example_WL_py
     root__scripts --> root__scripts__generate_structure_py
@@ -94,11 +94,13 @@ graph LR
     root__tutorials --> root__tutorials__observables
     root__tutorials__observables --> root__tutorials__observables__bao_ipynb
     root__tutorials__observables --> root__tutorials__observables__photo_ipynb
+    root__tutorials__observables --> root__tutorials__observables__photo_validation_TATT_CosmoSIS_ipynb
     root__tutorials__observables --> root__tutorials__observables__spectro_ipynb
     root__tutorials --> root__tutorials__profiling
     root__tutorials__profiling --> root__tutorials__profiling__time_comparison_ipynb
     root__tutorials__profiling --> root__tutorials__profiling__time_profiling_ipynb
     root --> root__validation
+    root__validation --> root__validation__photo_autodiff_ipynb
     root__validation --> root__validation__validation_CosmoSIS_ipynb
     root__validation --> root__validation__validation_ccl_ipynb
 ```
