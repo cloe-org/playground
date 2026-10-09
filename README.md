@@ -2,16 +2,41 @@
   <img src="https://github.com/user-attachments/assets/2dadf56f-9d51-4cda-83e7-97ac0ca1ba97" alt="playground banner" width="400">
 </p>
 
+<p align="center">
+  <a href="https://zenodo.org/communities/cloe-org/records"><img src="https://img.shields.io/badge/📥_Data-Zenodo_cloe--org_community-1682D4?style=for-the-badge&logo=zenodo&logoColor=white" alt="Data on Zenodo"></a>
+</p>
+
+> [!IMPORTANT]
+> **The data files are NOT in this repository. They live on [Zenodo](https://zenodo.org/communities/cloe-org/records).**
+> Most notebooks and scripts need input files (n(z), synthetic data vectors, covariances, mixing matrices, emulators, ...) that you have to download from the
+> [**cloe-org Zenodo community**](https://zenodo.org/communities/cloe-org/records) before running them.
+> See [📥 Data](#-data) below for which record each notebook uses.
 
 **Playground repository of the [`cloe` organisation](https://github.com/cloe-org)! 🚀**
 
 This repository serves as a sandbox for tutorials, exercises, and validation for various features, scripts, and models related to `cloelib` and `cloelike`. It provides an open space to learn quickly how to get around the `cloe` organisation.
 
-To explore the contents of this repository, you may need to download synthetic example data available at [Zenodo – cloe-org Community](https://zenodo.org/communities/cloe-org/records).
-
-The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest) library.
-
 Happy learning! 🎉
+
+## 📥 Data
+All the synthetic example data used in this repository is hosted on Zenodo, in the
+[**cloe-org community**](https://zenodo.org/communities/cloe-org/records). The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest) library.
+
+Some notebooks have a cell that downloads the files for you; for the others (and for the scripts in `scripts/sampling/`), download the files by hand and place them where the notebook/script expects them (by default, the directory you run it from).
+
+| Zenodo record | Content | Used in |
+|---|---|---|
+| [15092862](https://doi.org/10.5281/zenodo.15092862) | n(z): redshift bin distribution | `observables/photo`, `observables/photo_validation_TATT_CosmoSIS`, `likelihood/photometric_likelihoods`, `profiling/time_profiling`, `validation/*`, `scripts/sampling/*` |
+| [17191365](https://doi.org/10.5281/zenodo.17191365) | Angular power spectra and mixing matrices | `observables/photo`, `observables/photo_validation_TATT_CosmoSIS` |
+| [19071608](https://doi.org/10.5281/zenodo.19071608) | Angular power spectra and mixing matrices | `likelihood/photometric_likelihoods`, `scripts/sampling/*` |
+| [15260145](https://doi.org/10.5281/zenodo.15260145) | CosmoSIS benchmark | `validation/validation_CosmoSIS` |
+| [18982987](https://doi.org/10.5281/zenodo.18982987) | Synthetic Pk/2PCF multipoles, covariances and mixing matrices for GCspectro | `observables/spectro` |
+| [18711304](https://doi.org/10.5281/zenodo.18711304) | Synthetic Pk/2PCF multipoles, covariances and mixing matrices for GCspectro | `likelihood/likelihood_GCspectro_Pls`, `likelihood/likelihood_GCspectro_Pls_BAO` |
+| [19729182](https://doi.org/10.5281/zenodo.19729182) | Synthetic BAO alphas and covariance from GCspectro | `likelihood/likelihood_GCspectro_BAO`, `likelihood/likelihood_GCspectro_Pls_BAO` |
+| [21219969](https://doi.org/10.5281/zenodo.21219969) | Synthetic joint FS+BAO covariances for GCspectro | `likelihood/likelihood_GCspectro_Pls_BAO` |
+| [19678842](https://doi.org/10.5281/zenodo.19678842) | CosmoPowerJAX emulators for matter power spectra | `cosmology/cosmopower_jax_cosmology` |
+
+Notebook paths are relative to `tutorials/` unless stated otherwise. If you add a notebook that needs new data, upload it to the [cloe-org Zenodo community](https://zenodo.org/communities/cloe-org/records) (never commit data files here) and add a row to this table.
 
 ## 📦 Installation
 To use this repository, clone it, no installation needed!
