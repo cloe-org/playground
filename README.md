@@ -22,7 +22,7 @@ Happy learning! 🎉
 All the synthetic example data used in this repository is hosted on Zenodo, in the
 [**cloe-org community**](https://zenodo.org/communities/cloe-org/records). The data can be read using the [`euclidlib`](https://euclidlib.readthedocs.io/en/latest) library.
 
-Some notebooks have a cell that downloads the files for you; for the others (and for the scripts in `scripts/sampling/`), download the files by hand and place them where the notebook/script expects them (by default, the directory you run it from).
+Some notebooks have a cell that downloads the files for you; for the others (and for the scripts in `scripts/sampling/`, see [Running the Nautilus sampling scripts](#running-the-nautilus-sampling-scripts)), download the files by hand and place them where the notebook/script expects them (by default, the directory you run it from).
 
 | Zenodo record | Content | Used in |
 |---|---|---|
@@ -56,6 +56,34 @@ jupyter notebook tutorials/observables/photo.ipynb
 jupyter notebook tutorials/observables/spectro.ipynb
 jupyter notebook tutorials/observables/bao.ipynb
 ```
+
+### Running the Nautilus sampling scripts
+The scripts in `scripts/sampling/` run a full Bayesian inference with [Nautilus](https://nautilus-sampler.readthedocs.io):
+
+| Script | Probe |
+|---|---|
+| `nautilus_example_WL.py` | Cosmic shear (WL) |
+| `nautilus_example_3x2pt.py` | 3x2pt |
+
+Both scripts need the same four data files, which **you have to download from Zenodo first**:
+
+| File | Content | Zenodo record |
+|---|---|---|
+| `nz_example.fits` | n(z) of the tomographic bins | [15092862](https://doi.org/10.5281/zenodo.15092862) |
+| `synthetic_coupled_cells.fits` | Synthetic (mixing-matrix-coupled) angular power spectra | [19071608](https://doi.org/10.5281/zenodo.19071608) |
+| `mixmats_example.fits` | Mixing matrices | [19071608](https://doi.org/10.5281/zenodo.19071608) |
+| `covmat_2D.npz` | Gaussian 3x2pt covariance (WL uses its shear-shear block) | [19071608](https://doi.org/10.5281/zenodo.19071608) |
+
+```bash
+cd scripts/sampling
+curl -LO https://zenodo.org/records/15092862/files/nz_example.fits
+curl -LO https://zenodo.org/records/19071608/files/synthetic_coupled_cells.fits
+curl -LO https://zenodo.org/records/19071608/files/mixmats_example.fits
+curl -LO https://zenodo.org/records/19071608/files/covmat_2D.npz
+python nautilus_example_WL.py
+```
+
+The scripts look for the files in `DATA_DIR` (default: the directory you run them from); edit `DATA_DIR` at the top of the script if you keep them elsewhere. The model choice (`IA_MODEL`, `BARYON_MODEL`, and `GALAXY_BIAS_MODEL` for 3x2pt) and `N_LIVE` are set in the same block.
 
 ## 📬 Contact
 For any questions or discussions, feel free to open an issue or reach out to the [cloe-maintainers](https://github.com/orgs/cloe-org/teams/cloe-maintainers).

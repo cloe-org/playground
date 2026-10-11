@@ -12,7 +12,13 @@ cloelike#169 (cloelib with TATT and baryonic boosts). The WL covariance is the
 shear-shear block of the 3x2pt covariance in covmat_2D.npz.
 
 Data files expected in DATA_DIR: nz_example.fits, synthetic_coupled_cells.fits,
-mixmats_example.fits, covmat_2D.npz.
+mixmats_example.fits, covmat_2D.npz. They are not in this repository; download
+them from the cloe-org Zenodo community (https://zenodo.org/communities/cloe-org):
+
+    curl -LO https://zenodo.org/records/15092862/files/nz_example.fits
+    curl -LO https://zenodo.org/records/19071608/files/synthetic_coupled_cells.fits
+    curl -LO https://zenodo.org/records/19071608/files/mixmats_example.fits
+    curl -LO https://zenodo.org/records/19071608/files/covmat_2D.npz
 """
 
 # ============================================================================
