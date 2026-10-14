@@ -97,13 +97,14 @@ cells_data = el.le3.pk_wl.angular_power_spectra(
 mixmat = el.le3.pk_wl.mixing_matrices(os.path.join(DATA_DIR, "mixmats_example.fits"))
 
 # Load the 3x2pt covariance and keep its shear-shear block. Its blocks are
-# ordered GCph, GGL, WL, so WL is the last n_WL_pairs * n_ell rows/columns.
+# ordered WL, GGL, GCph (the order of EuclidLikelihood_3x2pt), so WL is the
+# first n_WL_pairs * n_ell rows/columns.
 full_cov = np.load(os.path.join(DATA_DIR, "covmat_2D.npz"))["Gauss"]
 n_ell = len(cells_data[("SHE", "SHE", 1, 1)].ell)
 n_wl = n_bins * (n_bins + 1) // 2 * n_ell
 if full_cov.shape[0] != len(cells_data) * n_ell:
     raise ValueError("Covariance size does not match the 3x2pt data vector.")
-wl_cov = full_cov[-n_wl:, -n_wl:]
+wl_cov = full_cov[:n_wl, :n_wl]
 
 # ============================================================================
 # 2. BUILD LIKELIHOOD DATA AND SETTINGS
