@@ -48,10 +48,13 @@ graph LR
     root__scripts[scripts/]
     root__scripts__sampling[sampling/]
     root__scripts__sampling__nautilus_example_py[nautilus_example.py]
+    root__scripts__sampling__nautilus_example_3x2pt_py[nautilus_example_3x2pt.py]
+    root__scripts__sampling__nautilus_example_WL_py[nautilus_example_WL.py]
     root__scripts__generate_structure_py[generate_structure.py]
     root__tutorials[tutorials/]
     root__tutorials__cosmology[cosmology/]
     root__tutorials__cosmology__cosmology_ipynb[cosmology.ipynb]
+    root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb[cosmopower_jax_cosmology.ipynb]
     root__tutorials__cosmology__neutrinos_ipynb[neutrinos.ipynb]
     root__tutorials__likelihood[likelihood/]
     root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb[likelihood_GCspectro_BAO.ipynb]
@@ -75,10 +78,13 @@ graph LR
     root --> root__scripts
     root__scripts --> root__scripts__sampling
     root__scripts__sampling --> root__scripts__sampling__nautilus_example_py
+    root__scripts__sampling --> root__scripts__sampling__nautilus_example_3x2pt_py
+    root__scripts__sampling --> root__scripts__sampling__nautilus_example_WL_py
     root__scripts --> root__scripts__generate_structure_py
     root --> root__tutorials
     root__tutorials --> root__tutorials__cosmology
     root__tutorials__cosmology --> root__tutorials__cosmology__cosmology_ipynb
+    root__tutorials__cosmology --> root__tutorials__cosmology__cosmopower_jax_cosmology_ipynb
     root__tutorials__cosmology --> root__tutorials__cosmology__neutrinos_ipynb
     root__tutorials --> root__tutorials__likelihood
     root__tutorials__likelihood --> root__tutorials__likelihood__likelihood_GCspectro_BAO_ipynb
@@ -128,8 +134,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://ntessore.page"><img src="https://avatars.githubusercontent.com/u/3993688?v=4?s=100" width="100px;" alt="Nicolas Tessore"/><br /><sub><b>Nicolas Tessore</b></sub></a><br /><a href="#bug-ntessore" title="Bug reports">🐛</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ivansladoljev"><img src="https://avatars.githubusercontent.com/u/144113061?v=4?s=100" width="100px;" alt="Ivan Sladoljev"/><br /><sub><b>Ivan Sladoljev</b></sub></a><br /><a href="#code-ivansladoljev" title="Code">💻</a> <a href="#ideas-ivansladoljev" title="Ideas, Planning, & Feedback">🤔</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/ivansladoljev"><img src="https://avatars.githubusercontent.com/u/144113061?v=4?s=100" width="100px;" alt="Ivan Sladoljev"/><br /><sub><b>Ivan Sladoljev</b></sub></a><br /><a href="#code-ivansladoljev" title="Code">💻</a> <a href="#ideas-ivansladoljev" title="Ideas, Planning, & Feedback">🤔</a> <a href="#bug-ivansladoljev" title="Bug reports">🐛</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ytchang05"><img src="https://avatars.githubusercontent.com/u/67809413?v=4?s=100" width="100px;" alt="Yu-Ting"/><br /><sub><b>Yu-Ting</b></sub></a><br /><a href="#code-ytchang05" title="Code">💻</a> <a href="#bug-ytchang05" title="Bug reports">🐛</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/DavidNavarroG"><img src="https://avatars.githubusercontent.com/u/29857945?v=4?s=100" width="100px;" alt="David Navarro Gironés"/><br /><sub><b>David Navarro Gironés</b></sub></a><br /><a href="#code-DavidNavarroG" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
