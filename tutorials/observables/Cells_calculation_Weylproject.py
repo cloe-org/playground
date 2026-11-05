@@ -1,10 +1,12 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 
-from cloelib.observables.photo import ShearTracer, PositionsTracer
-from cloelib.observables.photo_Weyl import PositionsTracer_Weyl_GC, PositionsTracer_Weyl_GGL
+from cloelib.observables.photo.positions import PositionsTracer
+from cloelib.observables.photo.shear import ShearTracer, PBJTATTLoopComputer 
+from cloelib.observables.photo.positions_Weyl import PositionsTracer_Weyl_GC, PositionsTracer_Weyl_GGL, ShearTracer_IAOnly
 from cloelib.summary_statistics.angular_two_point import AngularTwoPoint
-from cloelib.cosmology.Weyl_cosmology import WeylLinearPerturbations, WeylNonLinearPerturbations
+from cloelib.cosmology.Weyl_cosmology import WeylPerturbations
+#from cloelib.cosmology.Weyl_cosmology import WeylLinearPerturbations, WeylNonLinearPerturbations
 
 # Plot style
 import seaborn as sns
@@ -45,8 +47,7 @@ def Omegam_sigma8_Jhat_vals(z_effs, background, perturbations):
 # i.e. passing different values of bias / magnification bias etc. to the init function
 
 class Cells_calculation:
-    def __init__(self, perturbations, dndz_pos, dndz_she, z, include_rsd = False):
-        #self.background = background
+    def __init__(self, perturbations, dndz_pos, dndz_she, z, include_rsd = False, ia_model = None, ia_only = False, AIA = 1.72, A2IA = 0.4, bTA = -0.83):
         self.perturbations = perturbations
         self.dndz_pos = dndz_pos
         self.dndz_she = dndz_she
@@ -70,19 +71,45 @@ class Cells_calculation:
                                           include_rsd = include_rsd
                                          )
 
-        self.tracer_she = ShearTracer(perturbations = self.perturbations, 
-                             dndz = self.dndz_she,
-                             z = self.z,
-                             nuisance_params={'AIA': 1.72, 'CIA': 0.0134, 'EtaIA':-0.41,
-                                              'multiplicative_bias_1': 0.00, 'multiplicative_bias_2': 0.00,
-                                              'multiplicative_bias_3': 0.00, 'multiplicative_bias_4': 0.00,
-                                              'multiplicative_bias_5': 0.00, 'multiplicative_bias_6': 0.00,
-                                              'width_shear_1': 1.0, 'width_shear_2': 1.0,
-                                              'width_shear_3': 1.0, 'width_shear_4': 1.0,
-                                              'width_shear_5': 1.0, 'width_shear_6': 1.0,
-                                              'dz_shear_1': 0.000, 'dz_shear_2': 0.000,
-                                              'dz_shear_3': 0.000, 'dz_shear_4': 0.000,
-                                              'dz_shear_5': 0.000, 'dz_shear_6': 0.000})
+        if ia_model == 'TATT':
+            tatt_loop_computer = PBJTATTLoopComputer(self.perturbations)
+        else:
+            tatt_loop_computer = None
+
+        if ia_only:
+            self.tracer_she = ShearTracer_IAOnly(perturbations = self.perturbations, 
+                                      dndz = self.dndz_she,
+                                      z = self.z,
+                                      nuisance_params = {'AIA': AIA, 'CIA': 0.0134, 'EtaIA':-0.41, 
+                                                       'A2IA': A2IA, 'bTA': bTA, # fiducial nuisance parameters for TATT model
+                                                       'multiplicative_bias_1': 0.00, 'multiplicative_bias_2': 0.00,
+                                                       'multiplicative_bias_3': 0.00, 'multiplicative_bias_4': 0.00,
+                                                       'multiplicative_bias_5': 0.00, 'multiplicative_bias_6': 0.00,
+                                                       'width_shear_1': 1.0, 'width_shear_2': 1.0,
+                                                       'width_shear_3': 1.0, 'width_shear_4': 1.0,
+                                                       'width_shear_5': 1.0, 'width_shear_6': 1.0,
+                                                       'dz_shear_1': 0.000, 'dz_shear_2': 0.000,
+                                                       'dz_shear_3': 0.000, 'dz_shear_4': 0.000,
+                                                       'dz_shear_5': 0.000, 'dz_shear_6': 0.000},
+                                        ia_model = ia_model,
+                                        tatt_loop_computer = tatt_loop_computer)
+        else:
+            self.tracer_she = ShearTracer(perturbations = self.perturbations, 
+                                      dndz = self.dndz_she,
+                                      z = self.z,
+                                      nuisance_params = {'AIA': AIA, 'CIA': 0.0134, 'EtaIA':-0.41, 
+                                                       'A2IA': A2IA, 'bTA': bTA, # fiducial nuisance parameters for TATT model
+                                                       'multiplicative_bias_1': 0.00, 'multiplicative_bias_2': 0.00,
+                                                       'multiplicative_bias_3': 0.00, 'multiplicative_bias_4': 0.00,
+                                                       'multiplicative_bias_5': 0.00, 'multiplicative_bias_6': 0.00,
+                                                       'width_shear_1': 1.0, 'width_shear_2': 1.0,
+                                                       'width_shear_3': 1.0, 'width_shear_4': 1.0,
+                                                       'width_shear_5': 1.0, 'width_shear_6': 1.0,
+                                                       'dz_shear_1': 0.000, 'dz_shear_2': 0.000,
+                                                       'dz_shear_3': 0.000, 'dz_shear_4': 0.000,
+                                                       'dz_shear_5': 0.000, 'dz_shear_6': 0.000},
+                                        ia_model = ia_model,
+                                        tatt_loop_computer = tatt_loop_computer)
 
     def calculate_Cells(self):
         nl = 100
@@ -250,15 +277,16 @@ class Cells_calculation:
 # Again, this could be further generalized if we need some more flexibility
 # Written as a child class of Cells_calculation to avoid repetitive code
 class Cells_calculation_Weyl(Cells_calculation):
-    def __init__(self, perturbations_nl, perturbations_lin, dndz_pos, dndz_she, z, z_ini=10, include_rsd = False):
+    def __init__(self, perturbations_nl, perturbations_lin, dndz_pos, dndz_she, z, z_ini=10, include_rsd = False, ia_model = None, AIA = 1.72, A2IA = 0.4, bTA = -0.83):
         """
         Build a Weyl-perturbation-aware Cells_calculation by reusing the parent
         initialization and then replacing the position tracers with Weyl variants.
         """
         # set background and perturbations class
         self.background = perturbations_nl.background
-        Weyl_linear_perturbations = WeylLinearPerturbations(perturbations_lin, z, z_ini)
-        self.perturbations = WeylNonLinearPerturbations(perturbations_nl, Weyl_linear_perturbations, z, z_ini)
+        #self.Weyl_perturbations_lin = WeylLinearPerturbations(perturbations_lin, z, z_ini)
+        #self.perturbations = WeylNonLinearPerturbations(perturbations_nl, self.Weyl_perturbations_lin, z, z_ini)
+        self.perturbations = WeylPerturbations(perturbations_nl, perturbations_lin, z, z_ini)
 
         # store inputs
         self.dndz_pos = dndz_pos
@@ -269,7 +297,7 @@ class Cells_calculation_Weyl(Cells_calculation):
         # Call parent init to set defaults (this will create default tracers,
         # we'll immediately replace them with Weyl-specific ones below).
         # Parent __init__ expects (perturbations, dndz_pos, dndz_she, z)
-        super().__init__(self.perturbations, dndz_pos, dndz_she, z)
+        super().__init__(self.perturbations, dndz_pos, dndz_she, z, ia_model = ia_model, AIA = AIA, A2IA = A2IA, bTA = bTA)
 
         # compute lens n(z) effective redshifts and derived params for Weyl tracers
         self.z_effs = compute_zeffs(dndz_pos, z)
@@ -300,7 +328,7 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'Jhat_bin2': self.Jhat_vals[2], 'Jhat_bin3': self.Jhat_vals[3],
                 'Jhat_bin4': self.Jhat_vals[4], 'Jhat_bin5': self.Jhat_vals[5]
             },
-            include_rsd = include_rsd
+            include_rsd = include_rsd,
         )
 
         self.tracer_pos_GC = PositionsTracer_Weyl_GC(
@@ -321,7 +349,7 @@ class Cells_calculation_Weyl(Cells_calculation):
                 'dz_pos_3': 0.000, 'dz_pos_4': 0.000,
                 'dz_pos_5': 0.000, 'dz_pos_6': 0.000
             },
-            include_rsd = include_rsd
+            include_rsd = include_rsd,
         )
 
         # For compatibility with inherited plotting methods that expect self.tracer_pos:
